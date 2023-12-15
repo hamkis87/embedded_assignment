@@ -9,7 +9,8 @@ class Billboard {
     
     public:
     Billboard();
-    void print_ad(); 
+    friend class Advertisement;
+    //void print_ad();
 };
 
 

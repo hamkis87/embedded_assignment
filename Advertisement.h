@@ -1,6 +1,7 @@
 #ifndef __ADVERTISEMENT_H
 #define __ADVERTISEMENT_H
 #define TEXTLIMIT 64
+#include "Billboard.h"
 //#include "lcd.h"
 // #include <stdint.h>
 
@@ -25,10 +26,11 @@ class Advertisement {
     TextFrequency frequency_;
     
     public:
-    Advertisement(char advertisement[], 
-                  TextType text_type, 
-                  TextFrequency text_frequency);
+    Advertisement(char advertisement[] = "", 
+                  TextType text_type = TextType::REGULAR, 
+                  TextFrequency text_frequency = TextFrequency::RANDOM);
     char* my_test();
+    void print(Billboard &board);
     //void print_ad(); 
 };
 

@@ -1,4 +1,4 @@
-#include "advertisement.h"
+#include "Advertisement.h"
 
 Advertisement::Advertisement(char advertisement[], 
                              TextType text_type, 
@@ -23,4 +23,9 @@ char* Advertisement::my_test() {
     }
     arr2[i] = '\0';
     return arr2; 
+}
+
+void Advertisement::print(Billboard &board) {
+    char ads[] = "Hi there! Test advertisement here";
+    board.lcd.WriteText(ads);
 }
