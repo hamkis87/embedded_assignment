@@ -5,13 +5,13 @@
 //#include "lcd.h"
 // #include <stdint.h>
 
-enum class TextType { 
+enum class TextType : uint8_t { 
     REGULAR,
     BLINKING,
     SCROLLING
 };
 
-enum class TextFrequency { 
+enum class TextFrequency : uint8_t { 
     RANDOM, 
     EVEN_HOUR, 
     ODD_HOUR, 

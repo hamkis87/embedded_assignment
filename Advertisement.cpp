@@ -3,7 +3,7 @@
 Advertisement::Advertisement(char advertisement[], 
                              TextType text_type, 
                              TextFrequency text_frequency) {
-    int i = 0;
+    uint8_t i = 0;
     while ((i < TEXTLIMIT) && (advertisement[i] != '\0')) {
         text[i] = advertisement[i];
         ++i;
@@ -16,7 +16,7 @@ Advertisement::Advertisement(char advertisement[],
 char* Advertisement::my_test() {
     char my_text[15] = "I changed it!";
     static char arr2[20];
-    int i = 0;
+    uint8_t i = 0;
     while (my_text[i] != '\0') {
         arr2[i] = my_text[i];
         ++i;

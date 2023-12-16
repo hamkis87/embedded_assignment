@@ -1,25 +1,38 @@
 #include "Customer.h"
 
-Customer::Customer(char name[], int amount_paid) {
+Customer::Customer(char name[], uint16_t amount_paid) {
     amount_paid_ = amount_paid;
-    int i = 0;
-    while (name[i] != '\0' && (i < MAX_NAME_SIZE - 1)) {
+    uint8_t i = 0;
+    while ((i < MAX_NAME_SIZE - 1) && name[i] != '\0') {
         name_[i] = name[i];
         ++i;
     }
     name_[i] = '\0';
 }
 
-// Customer::Customer(const Customer &c) {
-//     amount_paid_ = c.amount_paid_;
-//     int i = 0;
-//     while (c.name_[i] != '\0' && (i < MAX_NAME_SIZE - 1)) {
-//         name_[i] = c.name_[i];
-//         ++i;
-//     }
-//     name_[i] = '\0';
+Customer::Customer(const Customer &other) {
+    amount_paid_ = other.amount_paid_;
+    uint8_t i = 0;
+    while (i < MAX_NAME_SIZE - 1 && other.name_[i] != '\0') {
+        name_[i] = other.name_[i];
+        ++i;
+    }
+    name_[i] = '\0';
+}
 
-// }
+Customer& Customer::operator=(const Customer& other) {
+    if (this != &other) {
+        amount_paid_ = other.amount_paid_;
+        uint8_t i = 0;
+        while (i < MAX_NAME_SIZE - 1 && other.name_[i] != '\0') {
+            name_[i] = other.name_[i];
+            ++i;
+        }
+        name_[i] = '\0';
+    }
+    return *this;
+}
+
 
 // Customer::add_advertisement(Advertisement ad) {
 

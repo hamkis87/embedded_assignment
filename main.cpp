@@ -32,42 +32,25 @@
 // }
 
 int main(void){
-    Billboard bill_board;
-    // Customer customers[NUMBER_OF_CUSTOMERS];
-    // char name1[] = "Hederlige Harrys Cars";
-    // char name2[] = "Farmor Ankas Pajer AB";
-    // char name3[] = "Svarte Petters Svartbyggen";
-    // char name4[] = "Långbens detektivbyrå";
+    Billboard bill_board;   
+    Customer customers[NUMBER_OF_CUSTOMERS] = {
+        Customer("Hederlige Harrys Cars", 5000),
+        Customer("Farmor Ankas Pajer AB", 3000),
+        Customer("Svarte Petters Svartbyggen", 1500),
+        Customer("Långbens detektivbyrå", 4000)
+    };
 
-    // char *names[] = {name1, name2, name3, name4};
-    // int amounts[] = {5000, 3000, 1500, 4000};
-    // for (int i = 0; i < NUMBER_OF_CUSTOMERS; ++i) {
-    //     customers[i] = Customer(names[i], amounts[i]);
-    // }
-    // add_customers(customers);
-    // Customer customer1("Hederlige Harrys Cars", 5000);
-    // Customer customer2("Farmor Ankas Pajer AB", 3000);
-    // Customer customers[2] = {customer1, customer2};
-    Customer customers[2] = {
-        Customer("Hederlige Harrys Cars", 5000), 
-        Customer("Farmor Ankas Pajer AB", 3000)};
-        
     // Advertisement advert1("hello hamid!", 
     //                       TextType::REGULAR,
     //                       TextFrequency::RANDOM);
     // advert1.print(bill_board);
     //bill_board.print_ad();
-
     HD44780 lcd;
     // lcd.Initalize();
     lcd.GoTo(0,0);
-    lcd.WriteText(customers[0].name_);
-    // lcd.WriteText("Hi Hamid ");
+    lcd.WriteText(customers[3].name_);
 
-    //Ntc ntc(AnalogPin(0));
-
-    // char text[20];
-
+    
     // while(1){
 	// 	//uint16_t value = ntc.analogRead(); // 0 - 1023
     //     //int d = (int)(ntc.getTemp() * 100)/100; //5.23 523
