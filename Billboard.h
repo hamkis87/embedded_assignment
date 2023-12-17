@@ -2,7 +2,6 @@
 #define __BILLBOARD_H
 
 #include "Customer.h"
-#include "lcd.h"
 // #include <stdint.h>
 
 #define NUMBER_OF_CUSTOMERS 4

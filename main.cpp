@@ -10,7 +10,6 @@
 //#include "utilities.h"
 //#include "lcd.h"
 //#include "AnalogPin.h"
-
 // https://wokwi.com/projects/365067824797777921
 
 // B (digital pin 8 to 13)
@@ -21,28 +20,6 @@
 
 //volatile uint32_t millis_count = 0;
 
-// void get_all_payments_and_total(Customer customers[], 
-//                                 uint8_t payments[], uint16_t &total) {
-//     for (uint8_t i = 0; i < NUMBER_OF_CUSTOMERS; ++i) {
-//         payments[i] = customers[i].getAmount();
-//         total += payments[i];
-//     }
-// }
-
-// uint8_t get_random_customer_id(const uint8_t payments[], 
-//                                const uint16_t &total) {
-//     uint16_t x = randomUint8InRange(total);
-//     uint16_t limit = 0;
-//     uint8_t i = 0;
-//     while (i < NUMBER_OF_CUSTOMERS) {
-//         limit += payments[i];
-//         if (x < limit)
-//             return i;
-//         ++i;
-//     }
-//     return i - 1; // if x is greater than or equal total 
-// }
-
 int main(void){
     Billboard bill_board;
     Customer c1("Hed", 50);
@@ -50,15 +27,26 @@ int main(void){
     Customer c3("Sva", 15);
     Customer c4("Lån", 40);
 
+    c1.addAdvertisement(Advertisement("Köp bil hos Harry",
+                                      TextType::REGULAR,
+                                      TextFrequency::RANDOM));
+    
+    c2.addAdvertisement(Advertisement("Köp paj hos Farmor Anka",
+                                      TextType::BLINKING,
+                                      TextFrequency::RANDOM));
+    
+    c3.addAdvertisement(Advertisement("Låt Petter bygga åt dig",
+                                      TextType::REGULAR,
+                                      TextFrequency::EVEN_MINUTE));
+    
+    c4.addAdvertisement(Advertisement("Mysterier? Ring Långben",
+                                      TextType::REGULAR,
+                                      TextFrequency::EVEN_HOUR));
+
     bill_board.addCustomer(c1);
     bill_board.addCustomer(c2);
     bill_board.addCustomer(c3);
     bill_board.addCustomer(c4);
-    
-    // uint16_t total = 0;
-    // uint8_t payments[NUMBER_OF_CUSTOMERS];
-    // get_all_payments_and_total(customers, payments, total);
-    //uint8_t customer_id = get_random_customer_id(payments, total);
 
     // Advertisement advert1("hello hamid!", 
     //                       TextType::REGULAR,

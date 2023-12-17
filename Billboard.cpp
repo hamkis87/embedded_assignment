@@ -31,10 +31,11 @@ uint8_t Billboard::getRandomCustomerId() {
 
 void Billboard::printAdvertisement() {
     uint8_t customer_id = getRandomCustomerId();
-    lcd_.GoTo(0,0);
-    lcd_.WriteText(customers_[customer_id].name_);
-    _delay_ms(1000);
-    lcd_.Clear();
+    customers_[customer_id].printRandomAd(lcd_);
+    // lcd_.GoTo(0,0);
+    //lcd_.WriteText(customers_[customer_id].name_);
+    // _delay_ms(1000);
+    // lcd_.Clear();
 }
 
 // void Billboard::print_ad() {

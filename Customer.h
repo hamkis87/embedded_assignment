@@ -1,5 +1,6 @@
 #ifndef __CUSTOMER_H
 #define __CUSTOMER_H
+#include "lcd.h"
 #include "Advertisement.h"
 
 #define MAX_NAME_SIZE 4
@@ -17,10 +18,11 @@ class Customer {
     // name_ made public for test only
     char name_[MAX_NAME_SIZE];
     Customer(char name[] = "", uint8_t amount_paid = 0);
-    Customer(const Customer &other);
-    Customer& operator=(const Customer& other);
+    // Customer(const Customer &other);
+    // Customer& operator=(const Customer& other);
     uint8_t getAmount() const;
-    // void add_advertisement(Advertisement ad);
+    void addAdvertisement(const Advertisement &ad);
+    void printRandomAd(HD44780 &lcd);
     //void print_ad();
 };
 
