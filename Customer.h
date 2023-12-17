@@ -2,7 +2,7 @@
 #define __CUSTOMER_H
 #include "Advertisement.h"
 
-#define MAX_NAME_SIZE 32
+#define MAX_NAME_SIZE 4
 #define MAX_ADS_NUMBER 4
 
 class Customer {
@@ -16,10 +16,10 @@ class Customer {
     public:
     // name_ made public for test only
     char name_[MAX_NAME_SIZE];
-    Customer(char name[], uint8_t amount_paid);
+    Customer(char name[] = "", uint8_t amount_paid = 0);
     Customer(const Customer &other);
     Customer& operator=(const Customer& other);
-    uint8_t getAmount();
+    uint8_t getAmount() const;
     // void add_advertisement(Advertisement ad);
     //void print_ad();
 };

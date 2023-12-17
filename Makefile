@@ -11,7 +11,7 @@ LDFLAGS=-mmcu=$(MCU)
 PORT=\\\\.\\COM3
 BIN=avrdemo
 OUT=${BIN}.hex
-SOURCES = main.cpp lcd.cpp Billboard.cpp Customer.cpp Advertisement.cpp utilities.cpp
+SOURCES = main.cpp lcd.cpp utilities.cpp Billboard.cpp Customer.cpp Advertisement.cpp
 
 DEBUG?=1
 
