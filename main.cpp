@@ -63,22 +63,8 @@ int main(void){
     bill_board.addCustomer(c3);
     bill_board.addCustomer(c4);
 
-    // Advertisement advert1("hello hamid!", 
-    //                       TextType::REGULAR,
-    //                       TextFrequency::RANDOM);
-    // advert1.print(bill_board);
-    //bill_board.print_ad();
-    //uint8_t x = randomUint8InRange(NUMBER_OF_CUSTOMERS);
-    //HD44780 lcd;
-    // lcd.Initalize();
-    
-
-    // lcd.WriteText("Hi Hamid ");
     while(1){
         bill_board.printAdvertisement(); 
-    //     uint8_t customer_id = get_random_customer_id(payments, total);
-    //     //lcd.WriteText(customers[customer_id].name_);
-    //     customers[customer_id].print_ad();
     //     //sprintf("hello", "%d ", customers[customer_id].getAmount());
     //     _delay_ms(1000);
     //     lcd.Clear();
