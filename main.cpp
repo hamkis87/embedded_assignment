@@ -21,40 +21,75 @@
 //volatile uint32_t millis_count = 0;
 
 int main(void){
-    Billboard bill_board;
-    Customer c1("Hed", 50);
-    Customer c2("Far", 30);
-    Customer c3("Sva", 15);
-    Customer c4("Lån", 40);
+    HD44780 lcd;
+    Billboard bill_board(&lcd);
+    // Customer c1("Hed", 50);
+    // Customer c2("Far", 30);
+    // Customer c3("Sva", 15);
+    // Customer c4("Lån", 40);
+    Customer c1(&lcd, 50);
+    Customer c2(&lcd, 30);
+    Customer c3(&lcd, 15);
+    Customer c4(&lcd, 40);
 
-    c1.addAdvertisement(Advertisement("Köp bil hos Harry",
+    // c1.addAdvertisement(Advertisement("Köp bil hos Harry",
+    //                                   TextType::REGULAR,
+    //                                   TextFrequency::RANDOM));
+    // c1.addAdvertisement(Advertisement("En god bilaffär (för Harry!)",
+    //                                   TextType::REGULAR,
+    //                                   TextFrequency::RANDOM));
+    // c1.addAdvertisement(Advertisement("Hederlige Harrys Bilar",
+    //                                   TextType::BLINKING,
+    //                                   TextFrequency::RANDOM));
+    
+    // c2.addAdvertisement(Advertisement("Köp paj hos Farmor Anka",
+    //                                   TextType::BLINKING,
+    //                                   TextFrequency::RANDOM));
+    // c2.addAdvertisement(Advertisement("Skynda innan Mårten ätit alla pajer",
+    //                                   TextType::REGULAR,
+    //                                   TextFrequency::RANDOM));
+    
+    // c3.addAdvertisement(Advertisement("Låt Petter bygga åt dig",
+    //                                   TextType::REGULAR,
+    //                                   TextFrequency::EVEN_MINUTE));
+    // c3.addAdvertisement(Advertisement("Bygga svart? Ring Petter",
+    //                                   TextType::REGULAR,
+    //                                   TextFrequency::ODD_MINUTE));
+    
+    // c4.addAdvertisement(Advertisement("Mysterier? Ring Långben",
+    //                                   TextType::REGULAR,
+    //                                   TextFrequency::EVEN_HOUR));
+    // c4.addAdvertisement(Advertisement("Långben fixar biffen",
+    //                                   TextType::REGULAR,
+    //                                   TextFrequency::ODD_HOUR));
+    c1.addAdvertisement(Advertisement(&lcd, "Köp bil hos Harry",
                                       TextType::REGULAR,
                                       TextFrequency::RANDOM));
-    c1.addAdvertisement(Advertisement("En god bilaffär (för Harry!)",
+    c1.addAdvertisement(Advertisement(&lcd, "En god bilaffär (för Harry!)",
                                       TextType::REGULAR,
                                       TextFrequency::RANDOM));
-    c1.addAdvertisement(Advertisement("Hederlige Harrys Bilar",
+    c1.addAdvertisement(Advertisement(&lcd, "Hederlige Harrys Bilar",
                                       TextType::BLINKING,
                                       TextFrequency::RANDOM));
     
-    c2.addAdvertisement(Advertisement("Köp paj hos Farmor Anka",
+    c2.addAdvertisement(Advertisement(&lcd, "Köp paj hos Farmor Anka",
                                       TextType::BLINKING,
                                       TextFrequency::RANDOM));
-    c2.addAdvertisement(Advertisement("Skynda innan Mårten ätit alla pajer",
+    c2.addAdvertisement(Advertisement(&lcd, "Skynda innan Mårten ätit alla pajer",
                                       TextType::REGULAR,
                                       TextFrequency::RANDOM));
     
-    c3.addAdvertisement(Advertisement("Låt Petter bygga åt dig",
+    c3.addAdvertisement(Advertisement(&lcd, "Låt Petter bygga åt dig",
                                       TextType::REGULAR,
                                       TextFrequency::EVEN_MINUTE));
-    c3.addAdvertisement(Advertisement("Bygga svart? Ring Petter",
+    c3.addAdvertisement(Advertisement(&lcd, "Bygga svart? Ring Petter",
                                       TextType::REGULAR,
                                       TextFrequency::ODD_MINUTE));
     
-    c4.addAdvertisement(Advertisement("Mysterier? Ring Långben",
+    c4.addAdvertisement(Advertisement(&lcd, "Mysterier? Ring Långben",
                                       TextType::REGULAR,
                                       TextFrequency::EVEN_HOUR));
-    c4.addAdvertisement(Advertisement("Långben fixar biffen",
+    c4.addAdvertisement(Advertisement(&lcd, "Långben fixar biffen",
                                       TextType::REGULAR,
                                       TextFrequency::ODD_HOUR));
 

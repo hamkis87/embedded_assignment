@@ -24,13 +24,14 @@ class Advertisement {
     char text_[TEXTLIMIT];
     TextType type_;
     TextFrequency frequency_;
-    
+    HD44780 *lcd_;    
     public:
-    Advertisement(char advertisement[] = "", 
+    Advertisement(HD44780 *lcd = nullptr, char advertisement[] = "", 
                   TextType text_type = TextType::REGULAR, 
                   TextFrequency text_frequency = TextFrequency::RANDOM);
     //char text_[TEXTLIMIT];
-    void printAd(HD44780 &lcd);
+    // void printAd(HD44780 &lcd);
+    void printAd();
     //char* my_test();
     //void print(Billboard &board);
     //void print_ad(); 

@@ -12,14 +12,17 @@ class Customer {
     // amount_paid_ is the actual amount divided by 100
     uint8_t amount_paid_; 
     uint8_t number_of_ads_;
+    HD44780 *lcd_;
     
     public:
     // name_ made public for test only
-    char name_[MAX_NAME_SIZE];
-    Customer(char name[] = "", uint8_t amount_paid = 0);
+    //char name_[MAX_NAME_SIZE];
+    //Customer(char name[] = "", uint8_t amount_paid = 0);
+    Customer(HD44780 *lcd = nullptr, uint8_t amount_paid = 0);
     uint8_t getAmount() const;
     void addAdvertisement(const Advertisement &ad);
-    void printRandomAd(HD44780 &lcd);
+    // void printRandomAd(HD44780 &lcd);
+    void printRandomAd();
 };
 
 
