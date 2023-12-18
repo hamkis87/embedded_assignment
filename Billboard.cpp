@@ -2,11 +2,8 @@
 #include "utilities.h"
 //#include "advertisement.h"
 
-Billboard::Billboard(HD44780 *lcd): lcd_(lcd), customers_count_(0), total_payments_(0) {
-    // lcd_.GoTo(0,0);
-    // customers_count_ = 0;
-    // total_payments_ = 0;
-}
+Billboard::Billboard(HD44780 *lcd): lcd_(lcd), customers_count_(0), 
+                                    total_payments_(0) {}
 
 void Billboard::addCustomer(const Customer& customer) {
     if (customers_count_ < NUMBER_OF_CUSTOMERS) {
@@ -31,18 +28,5 @@ uint8_t Billboard::getRandomCustomerId() {
 
 void Billboard::printAdvertisement() {
     uint8_t customer_id = getRandomCustomerId();
-    // customers_[customer_id].printRandomAd(lcd_);
     customers_[customer_id].printRandomAd();
-    // lcd_.GoTo(0,0);
-    //lcd_.WriteText(customers_[customer_id].name_);
-    // _delay_ms(1000);
-    // lcd_.Clear();
 }
-
-// void Billboard::print_ad() {
-//     //char advertisement[] = "Hi there! Test advertisement here";
-//     Advertisement advert1("hello hamid!", 
-//                           TextType::REGULAR,
-//                           TextFrequency::RANDOM);
-//     lcd.WriteText(advert1.my_test());
-// }

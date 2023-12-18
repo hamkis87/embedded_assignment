@@ -2,8 +2,9 @@
 #define __ADVERTISEMENT_H
 #define TEXTLIMIT 40
 //#include "Billboard.h"
-#include "lcd.h"
+#include <util/delay.h>
 #include <stdint.h>
+#include "lcd.h"
 
 enum class TextType : uint8_t { 
     REGULAR,
@@ -24,7 +25,11 @@ class Advertisement {
     char text_[TEXTLIMIT];
     TextType type_;
     TextFrequency frequency_;
-    HD44780 *lcd_;    
+    HD44780 *lcd_;
+    void printBlinking();
+    void printScrolling();
+    void printRegular();
+
     public:
     Advertisement(HD44780 *lcd = nullptr, char advertisement[] = "", 
                   TextType text_type = TextType::REGULAR, 

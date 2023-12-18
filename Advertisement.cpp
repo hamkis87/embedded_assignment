@@ -9,16 +9,41 @@ Advertisement::Advertisement(HD44780 *lcd, char advertisement[],
     text_frequency = frequency_;
 }
 
-void Advertisement::printAd() {
-    lcd_->GoTo(0,0);
+void Advertisement::printBlinking() {
     lcd_->WriteText(text_);
-    _delay_ms(1000);
+    _delay_ms(800);
     lcd_->Clear();
+    _delay_ms(400);
+    lcd_->WriteText(text_);
+    _delay_ms(800);
+    lcd_->Clear();   
 }
 
-// void Advertisement::printAd(HD44780 &lcd) {
-//     lcd.GoTo(0,0);
-//     lcd.WriteText(text_);
-//     _delay_ms(1000);
-//     lcd.Clear();
-// }
+void Advertisement::printScrolling() {
+    lcd_->WriteText(text_);
+    _delay_ms(2000);
+    lcd_->Clear();   
+}
+
+void Advertisement::printRegular() {
+    lcd_->WriteText(text_);
+    _delay_ms(2000);
+    lcd_->Clear();   
+}
+
+void Advertisement::printAd() {
+    lcd_->GoTo(0,0);
+    switch (type_) {
+        case TextType::BLINKING :
+            printBlinking();
+            break;
+        case TextType::SCROLLING :
+            printScrolling();
+            break;
+        default: // for TextType::REGULAR
+            printRegular();
+    }
+    // lcd_->WriteText(text_);
+    // _delay_ms(1000);
+    // lcd_->Clear();
+}

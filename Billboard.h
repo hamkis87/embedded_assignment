@@ -17,8 +17,6 @@ class Billboard {
     Billboard(HD44780 *lcd);
     void addCustomer(const Customer &customer);
     void printAdvertisement();
-    //friend class Advertisement;
-    //void print_ad();
 };
 
 
