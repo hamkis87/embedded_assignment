@@ -4,7 +4,7 @@
 #include "Advertisement.h"
 
 #define MAX_NAME_SIZE 4
-#define MAX_ADS_NUMBER 4
+#define MAX_ADS_NUMBER 3
 
 class Customer {
     private:

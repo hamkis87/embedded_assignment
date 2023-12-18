@@ -40,8 +40,9 @@ void Customer::addAdvertisement(const Advertisement &ad) {
 }
 
 void Customer::printRandomAd(HD44780 &lcd) {
+    uint8_t ad_id = (uint8_t)randomUint16InRange(number_of_ads_);
     lcd.GoTo(0,0);
-    lcd.WriteText(ads_[0].text_);
+    lcd.WriteText(ads_[ad_id].text_);
     _delay_ms(1000);
     lcd.Clear();
 }

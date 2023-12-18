@@ -30,18 +30,33 @@ int main(void){
     c1.addAdvertisement(Advertisement("Köp bil hos Harry",
                                       TextType::REGULAR,
                                       TextFrequency::RANDOM));
+    c1.addAdvertisement(Advertisement("En god bilaffär (för Harry!)",
+                                      TextType::REGULAR,
+                                      TextFrequency::RANDOM));
+    c1.addAdvertisement(Advertisement("Hederlige Harrys Bilar",
+                                      TextType::BLINKING,
+                                      TextFrequency::RANDOM));
     
     c2.addAdvertisement(Advertisement("Köp paj hos Farmor Anka",
                                       TextType::BLINKING,
+                                      TextFrequency::RANDOM));
+    c2.addAdvertisement(Advertisement("Skynda innan Mårten ätit alla pajer",
+                                      TextType::REGULAR,
                                       TextFrequency::RANDOM));
     
     c3.addAdvertisement(Advertisement("Låt Petter bygga åt dig",
                                       TextType::REGULAR,
                                       TextFrequency::EVEN_MINUTE));
+    c3.addAdvertisement(Advertisement("Bygga svart? Ring Petter",
+                                      TextType::REGULAR,
+                                      TextFrequency::ODD_MINUTE));
     
     c4.addAdvertisement(Advertisement("Mysterier? Ring Långben",
                                       TextType::REGULAR,
                                       TextFrequency::EVEN_HOUR));
+    c4.addAdvertisement(Advertisement("Långben fixar biffen",
+                                      TextType::REGULAR,
+                                      TextFrequency::ODD_HOUR));
 
     bill_board.addCustomer(c1);
     bill_board.addCustomer(c2);
