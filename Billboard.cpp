@@ -4,7 +4,8 @@
 
 Billboard::Billboard(): customers_count_(0), 
                         last_shown_customer_id_(NUMBER_OF_CUSTOMERS),
-                        total_payments_(0) {}
+                        total_payments_(0),
+                        time_elapsed_(0) {}
 
 void Billboard::addCustomer(const Customer& customer) {
     if (customers_count_ < NUMBER_OF_CUSTOMERS) {
@@ -37,5 +38,6 @@ void Billboard::printAdvertisement() {
             break;
         }
     }
-    customers_[customer_id].printRandomAd();
+    uint16_t time_increment = customers_[customer_id].printRandomAd(time_elapsed_);
+    time_elapsed_ += time_increment;
 }

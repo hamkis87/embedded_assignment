@@ -20,7 +20,7 @@ class Customer {
     Customer(uint8_t amount_paid = 0);
     uint8_t getAmount() const;
     void addAdvertisement(const Advertisement &ad);
-    void printRandomAd();
+    uint16_t printRandomAd(uint32_t time_elapsed);
 };
 
 

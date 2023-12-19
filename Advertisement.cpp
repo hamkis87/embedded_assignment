@@ -9,18 +9,34 @@ Advertisement::Advertisement(HD44780 *lcd, char advertisement[],
     text_frequency = frequency_;
 }
 
-void Advertisement::printAndDelay(char text[]) {
+bool Advertisement::printAllowedNow(uint32_t time_elapsed) {
+    switch (frequency_) {
+        case TextFrequency::EVEN_HOUR:
+            return ((time_elapsed/HOUR_TO_MILLISEC)%2 == 0);
+        case TextFrequency::ODD_HOUR:
+            return ((time_elapsed/HOUR_TO_MILLISEC)%2 == 1);
+        case TextFrequency::EVEN_MINUTE:
+            return ((time_elapsed/MINUTE_TO_MILLISEC)%2 == 0);
+        case TextFrequency::ODD_MINUTE:
+            return ((time_elapsed/MINUTE_TO_MILLISEC)%2 == 1);
+        default:
+            return true;
+    }
+}
+
+uint16_t Advertisement::printAndDelay(char text[]) {
     lcd_->GoTo(0,0);
     lcd_->WriteText(text);
     switch (type_) {
         case TextType::BLINKING:
             _delay_ms(MILLIS_SHORT);
-            break;
+            return MILLIS_SHORT;
         case TextType::SCROLLING:
             _delay_ms(MILLIS_TINY);
-            break;
+            return MILLIS_TINY;
         default:
             _delay_ms(MILLIS_LONG);
+            return MILLIS_LONG;
     }
 }
 
@@ -31,20 +47,24 @@ void Advertisement::leftPadWithSpaces(char text[]) {
     text[LCD_SIZE - 1] = '\0';
 }
 
-void Advertisement::printBlinking() {
+uint16_t Advertisement::printBlinking() {
     // blinking ad would be printed for MILLIS_SHORT * 4 millisec
     // plus 1000 * 4 blink delay between each print, so the total
-    // is (MILLIS_SHORT+1000) * 4  
+    // is (MILLIS_SHORT+1000) * 4
+    uint16_t time_increment = 0;  
     for (uint8_t i = 0; i < 4; ++i) {
-        printAndDelay(text_);
+        time_increment += printAndDelay(text_);
         lcd_->Clear();
-        _delay_ms(1000);
-    }   
+        _delay_ms(CLEAR_DELAY);
+        time_increment += CLEAR_DELAY;
+    }
+    return time_increment;  
 }
 
-void Advertisement::printScrolling() {
+uint16_t Advertisement::printScrolling() {
     // a scrolling ad with an average length(16 chars)
     // would take approximately (32 + 16) * MILLIS_TINY millisec
+    uint16_t time_increment = 0; 
     char scrolled_text[LCD_SIZE];
     char left_padded_text[LCD_SIZE];
     leftPadWithSpaces(left_padded_text);
@@ -58,7 +78,7 @@ void Advertisement::printScrolling() {
         scrolled_text[LCD_SIZE - 2] = text_[j];
         --i;
         ++j;
-        printAndDelay(scrolled_text);
+        time_increment += printAndDelay(scrolled_text);
         lcd_->Clear();    
     }
     while (text_[j] != '\0') {
@@ -67,7 +87,7 @@ void Advertisement::printScrolling() {
         }
         scrolled_text[LCD_SIZE - 2] = text_[j];
         ++j;
-        printAndDelay(scrolled_text);
+        time_increment += printAndDelay(scrolled_text);
         lcd_->Clear();
     }
     while(strcmp(scrolled_text, left_padded_text) != 0) {
@@ -77,25 +97,28 @@ void Advertisement::printScrolling() {
             else
                 scrolled_text[k - 1] = scrolled_text[k];
         }
-        printAndDelay(scrolled_text);
+        time_increment += printAndDelay(scrolled_text);
         lcd_->Clear();
-    }   
+    }
+    return time_increment;   
 }
 
-void Advertisement::printRegular() {
-    printAndDelay(text_);
-    lcd_->Clear();   
+uint16_t Advertisement::printRegular() {
+    uint16_t time_increment = 0; 
+    time_increment += printAndDelay(text_);
+    lcd_->Clear();
+    return time_increment;
 }
 
-void Advertisement::printAd() {
+uint16_t Advertisement::printAd(uint32_t time_elapsed) {
+    if (!printAllowedNow(time_elapsed))
+        return 0;
     switch (type_) {
         case TextType::BLINKING :
-            printBlinking();
-            break;
+            return printBlinking();
         case TextType::SCROLLING :
-            printScrolling();
-            break;
+            return printScrolling();
         default: // for TextType::REGULAR
-            printRegular();
+            return printRegular();
     }
 }

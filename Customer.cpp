@@ -17,7 +17,7 @@ void Customer::addAdvertisement(const Advertisement &ad) {
     }
 }
 
-void Customer::printRandomAd() {
+uint16_t Customer::printRandomAd(uint32_t time_elapsed) {
     uint8_t ad_id = (uint8_t)randomUint16InRange(number_of_ads_);
-    ads_[ad_id].printAd();
+    return ads_[ad_id].printAd(time_elapsed);
 }

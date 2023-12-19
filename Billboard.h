@@ -11,6 +11,7 @@ class Billboard {
     uint8_t customers_count_;
     uint8_t last_shown_customer_id_;
     uint16_t total_payments_;
+    uint32_t time_elapsed_;
     Customer customers_[NUMBER_OF_CUSTOMERS];
     uint8_t getRandomCustomerId();     
     public:
