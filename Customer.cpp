@@ -3,8 +3,8 @@
 #include "utilities.h"
 
 
-Customer::Customer(HD44780 *lcd, uint8_t amount_paid): 
-lcd_(lcd), amount_paid_(amount_paid), number_of_ads_(0) {}
+Customer::Customer(uint8_t amount_paid): 
+amount_paid_(amount_paid), number_of_ads_(0) {}
 
 uint8_t Customer::getAmount() const {
     return amount_paid_;

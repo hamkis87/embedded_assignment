@@ -10,11 +10,10 @@ class Billboard {
     private:
     uint8_t customers_count_;
     uint16_t total_payments_;
-    HD44780 *lcd_;
     Customer customers_[NUMBER_OF_CUSTOMERS];
     uint8_t getRandomCustomerId();     
     public:
-    Billboard(HD44780 *lcd);
+    Billboard();
     void addCustomer(const Customer &customer);
     void printAdvertisement();
 };

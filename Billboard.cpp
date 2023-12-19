@@ -2,8 +2,7 @@
 #include "utilities.h"
 //#include "advertisement.h"
 
-Billboard::Billboard(HD44780 *lcd): lcd_(lcd), customers_count_(0), 
-                                    total_payments_(0) {}
+Billboard::Billboard(): customers_count_(0), total_payments_(0) {}
 
 void Billboard::addCustomer(const Customer& customer) {
     if (customers_count_ < NUMBER_OF_CUSTOMERS) {

@@ -21,12 +21,12 @@
 
 int main(void){
     HD44780 lcd;
-    Billboard bill_board(&lcd);
+    Billboard bill_board;
 
-    Customer c1(&lcd, 50);
-    Customer c2(&lcd, 30);
-    Customer c3(&lcd, 15);
-    Customer c4(&lcd, 40);
+    Customer c1(50);
+    Customer c2(30);
+    Customer c3(15);
+    Customer c4(40);
 
     c1.addAdvertisement(Advertisement(&lcd, "Köp bil hos Harry",
                                       TextType::REGULAR,
