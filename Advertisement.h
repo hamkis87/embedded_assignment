@@ -12,8 +12,8 @@
 #define MILLIS_TINY 400
 #define MILLIS_SHORT 4000
 #define MILLIS_LONG 20000
-#define MINUTE_TO_MILLISEC 60 // change to 60000
-#define HOUR_TO_MILLISEC 360 // change to 3600000
+#define MINUTE_TO_MILLISEC 60000 // change to 60000
+#define HOUR_TO_MILLISEC 3600000 // change to 3600000
 
 enum class TextType : uint8_t { 
     REGULAR,

@@ -78,17 +78,7 @@ int main(void){
     bill_board.addCustomer(c6);
 
     while(1){
-        bill_board.printAdvertisement(); 
-    //     //sprintf("hello", "%d ", customers[customer_id].getAmount());
-    //     _delay_ms(1000);
-    //     lcd.Clear();
-	// 	//uint16_t value = ntc.analogRead(); // 0 - 1023
-    //     //int d = (int)(ntc.getTemp() * 100)/100; //5.23 523
-    //     //sprintf(text, "%d ", d);
-    //     lcd.Clear();
-    //     //lcd.GoTo(0,0);
-    //     lcd.WriteText(text);
-    //     _delay_ms(1000);
+        bill_board.printAdvertisement();
     }
     return 0;
 }
