@@ -103,6 +103,7 @@ public:
 	void BuildFont(unsigned char, unsigned char*);
 	void DrawCustomFont(unsigned char);
 	void DrawCustomFont(unsigned char, int);
+	//void CreateChar(uint8_t location, uint8_t charArray[]);
 
 	void BuildFonts(unsigned char**);
 private:

@@ -4,7 +4,7 @@
 #include "Customer.h"
 // #include <stdint.h>
 
-#define NUMBER_OF_CUSTOMERS 4
+#define NUMBER_OF_CUSTOMERS 6
 
 class Billboard {
     private:

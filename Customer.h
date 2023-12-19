@@ -7,7 +7,6 @@
 
 class Customer {
     private:
-    // char name_[MAX_NAME_SIZE];
     Advertisement ads_[MAX_ADS_NUMBER];
     // amount_paid_ is the actual amount divided by 100
     uint8_t amount_paid_; 

@@ -18,7 +18,8 @@
 enum class TextType : uint8_t { 
     REGULAR,
     BLINKING,
-    SCROLLING
+    SCROLLING,
+    CUSTOMIZED  // for a customized font
 };
 
 enum class TextFrequency : uint8_t { 

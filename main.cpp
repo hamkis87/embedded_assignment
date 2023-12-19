@@ -25,6 +25,8 @@ int main(void){
     Customer c2(30);
     Customer c3(15);
     Customer c4(40);
+    Customer c5(10);
+    Customer c6(60);
 
     c1.addAdvertisement(Advertisement(&lcd, "Köp bil hos Harry",
                                       TextType::REGULAR,
@@ -57,10 +59,23 @@ int main(void){
                                       TextType::REGULAR,
                                       TextFrequency::ODD_HOUR));
 
+    c5.addAdvertisement(Advertisement(&lcd, "Synas här? IOT:s Reklambyrå",
+                                      TextType::CUSTOMIZED,
+                                      TextFrequency::RANDOM));
+
+    c6.addAdvertisement(Advertisement(&lcd, "T-Röd - för dig som tänkt klart",
+                                      TextType::REGULAR,
+                                      TextFrequency::RANDOM));
+    c6.addAdvertisement(Advertisement(&lcd, "Claes Månsson - om flickan själv får välja",
+                                      TextType::REGULAR,
+                                      TextFrequency::RANDOM));
+
     bill_board.addCustomer(c1);
     bill_board.addCustomer(c2);
     bill_board.addCustomer(c3);
     bill_board.addCustomer(c4);
+    bill_board.addCustomer(c5);
+    bill_board.addCustomer(c6);
 
     while(1){
         bill_board.printAdvertisement(); 
