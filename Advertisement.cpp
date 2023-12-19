@@ -9,13 +9,19 @@ Advertisement::Advertisement(HD44780 *lcd, char advertisement[],
     text_frequency = frequency_;
 }
 
-void Advertisement::printAndDelay(char text[], bool is_long_period) {
+void Advertisement::printAndDelay(char text[]) {
     lcd_->GoTo(0,0);
     lcd_->WriteText(text);
-    if (is_long_period)
-        _delay_ms(2000);
-    else
-        _delay_ms(400);
+    switch (type_) {
+        case TextType::BLINKING:
+            _delay_ms(MILLIS_SHORT);
+            break;
+        case TextType::SCROLLING:
+            _delay_ms(MILLIS_TINY);
+            break;
+        default:
+            _delay_ms(MILLIS_LONG);
+    }
 }
 
 void Advertisement::leftPadWithSpaces(char text[]) {
@@ -26,14 +32,19 @@ void Advertisement::leftPadWithSpaces(char text[]) {
 }
 
 void Advertisement::printBlinking() {
+    // blinking ad would be printed for MILLIS_SHORT * 4 millisec
+    // plus 1000 * 4 blink delay between each print, so the total
+    // is (MILLIS_SHORT+1000) * 4  
     for (uint8_t i = 0; i < 4; ++i) {
-        printAndDelay(text_, false);
+        printAndDelay(text_);
         lcd_->Clear();
-        _delay_ms(100);
+        _delay_ms(1000);
     }   
 }
 
 void Advertisement::printScrolling() {
+    // a scrolling ad with an average length(16 chars)
+    // would take approximately (32 + 16) * MILLIS_TINY millisec
     char scrolled_text[LCD_SIZE];
     char left_padded_text[LCD_SIZE];
     leftPadWithSpaces(left_padded_text);
@@ -47,7 +58,7 @@ void Advertisement::printScrolling() {
         scrolled_text[LCD_SIZE - 2] = text_[j];
         --i;
         ++j;
-        printAndDelay(scrolled_text, false);
+        printAndDelay(scrolled_text);
         lcd_->Clear();    
     }
     while (text_[j] != '\0') {
@@ -56,7 +67,7 @@ void Advertisement::printScrolling() {
         }
         scrolled_text[LCD_SIZE - 2] = text_[j];
         ++j;
-        printAndDelay(scrolled_text, false);
+        printAndDelay(scrolled_text);
         lcd_->Clear();
     }
     while(strcmp(scrolled_text, left_padded_text) != 0) {
@@ -66,13 +77,13 @@ void Advertisement::printScrolling() {
             else
                 scrolled_text[k - 1] = scrolled_text[k];
         }
-        printAndDelay(scrolled_text, false);
+        printAndDelay(scrolled_text);
         lcd_->Clear();
     }   
 }
 
 void Advertisement::printRegular() {
-    printAndDelay(text_, true);
+    printAndDelay(text_);
     lcd_->Clear();   
 }
 

@@ -1,12 +1,16 @@
 #ifndef __ADVERTISEMENT_H
 #define __ADVERTISEMENT_H
-#define TEXTLIMIT 40
-#define LCD_SIZE 33
-//#include "Billboard.h"
+
 #include <util/delay.h>
 #include <stdint.h>
 #include <string.h>
 #include "lcd.h"
+
+#define TEXTLIMIT 40
+#define LCD_SIZE 33
+#define MILLIS_TINY 400
+#define MILLIS_SHORT 4000
+#define MILLIS_LONG 20000
 
 enum class TextType : uint8_t { 
     REGULAR,
@@ -28,7 +32,7 @@ class Advertisement {
     TextType type_;
     TextFrequency frequency_;
     HD44780 *lcd_;
-    void printAndDelay(char text[], bool is_long_period);
+    void printAndDelay(char text[]);
     void leftPadWithSpaces(char text[]);
     void printBlinking();
     void printScrolling();

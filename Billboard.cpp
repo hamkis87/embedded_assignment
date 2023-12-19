@@ -2,7 +2,9 @@
 #include "utilities.h"
 //#include "advertisement.h"
 
-Billboard::Billboard(): customers_count_(0), total_payments_(0) {}
+Billboard::Billboard(): customers_count_(0), 
+                        last_shown_customer_id_(NUMBER_OF_CUSTOMERS),
+                        total_payments_(0) {}
 
 void Billboard::addCustomer(const Customer& customer) {
     if (customers_count_ < NUMBER_OF_CUSTOMERS) {
@@ -26,6 +28,14 @@ uint8_t Billboard::getRandomCustomerId() {
 } 
 
 void Billboard::printAdvertisement() {
-    uint8_t customer_id = getRandomCustomerId();
+    //uint8_t customer_id = getRandomCustomerId();
+    uint8_t customer_id;
+    while(1) {
+        customer_id = getRandomCustomerId();
+        if (customer_id != last_shown_customer_id_) {
+            last_shown_customer_id_ = customer_id;
+            break;
+        }
+    }
     customers_[customer_id].printRandomAd();
 }
