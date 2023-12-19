@@ -9,23 +9,28 @@ Advertisement::Advertisement(HD44780 *lcd, char advertisement[],
     text_frequency = frequency_;
 }
 
-void Advertisement::leftPadWithSpaces(char arr[]) {
+void Advertisement::printAndDelay(char text[], bool is_long_period) {
+    lcd_->GoTo(0,0);
+    lcd_->WriteText(text);
+    if (is_long_period)
+        _delay_ms(2000);
+    else
+        _delay_ms(400);
+}
+
+void Advertisement::leftPadWithSpaces(char text[]) {
     for (uint8_t i = 0; i < LCD_SIZE - 1; ++i) {
-        arr[i] = ' ';
+        text[i] = ' ';
     }
-    arr[LCD_SIZE - 1] = '\0';
+    text[LCD_SIZE - 1] = '\0';
 }
 
 void Advertisement::printBlinking() {
-    lcd_->GoTo(0,0);
-    lcd_->WriteText(text_);
-    _delay_ms(800);
-    lcd_->Clear();
-    lcd_->GoTo(0,0);
-    _delay_ms(400);
-    lcd_->WriteText(text_);
-    _delay_ms(800);
-    lcd_->Clear();   
+    for (uint8_t i = 0; i < 4; ++i) {
+        printAndDelay(text_, false);
+        lcd_->Clear();
+        _delay_ms(100);
+    }   
 }
 
 void Advertisement::printScrolling() {
@@ -42,9 +47,7 @@ void Advertisement::printScrolling() {
         scrolled_text[LCD_SIZE - 2] = text_[j];
         --i;
         ++j;
-        lcd_->GoTo(0,0);
-        lcd_->WriteText(scrolled_text);
-        _delay_ms(400);
+        printAndDelay(scrolled_text, false);
         lcd_->Clear();    
     }
     while (text_[j] != '\0') {
@@ -53,9 +56,7 @@ void Advertisement::printScrolling() {
         }
         scrolled_text[LCD_SIZE - 2] = text_[j];
         ++j;
-        lcd_->GoTo(0,0);
-        lcd_->WriteText(scrolled_text);
-        _delay_ms(400);
+        printAndDelay(scrolled_text, false);
         lcd_->Clear();
     }
     while(strcmp(scrolled_text, left_padded_text) != 0) {
@@ -65,22 +66,17 @@ void Advertisement::printScrolling() {
             else
                 scrolled_text[k - 1] = scrolled_text[k];
         }
-        lcd_->GoTo(0,0);
-        lcd_->WriteText(scrolled_text);
-        _delay_ms(400);
+        printAndDelay(scrolled_text, false);
         lcd_->Clear();
     }   
 }
 
 void Advertisement::printRegular() {
-    lcd_->GoTo(0,0);
-    lcd_->WriteText(text_);
-    _delay_ms(2000);
+    printAndDelay(text_, true);
     lcd_->Clear();   
 }
 
 void Advertisement::printAd() {
-    //lcd_->GoTo(0,0);
     switch (type_) {
         case TextType::BLINKING :
             printBlinking();
@@ -91,7 +87,4 @@ void Advertisement::printAd() {
         default: // for TextType::REGULAR
             printRegular();
     }
-    // lcd_->WriteText(text_);
-    // _delay_ms(1000);
-    // lcd_->Clear();
 }

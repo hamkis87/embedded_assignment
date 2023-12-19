@@ -28,7 +28,8 @@ class Advertisement {
     TextType type_;
     TextFrequency frequency_;
     HD44780 *lcd_;
-    void leftPadWithSpaces(char arr[]);
+    void printAndDelay(char text[], bool is_long_period);
+    void leftPadWithSpaces(char text[]);
     void printBlinking();
     void printScrolling();
     void printRegular();
@@ -37,12 +38,7 @@ class Advertisement {
     Advertisement(HD44780 *lcd = nullptr, char advertisement[] = "", 
                   TextType text_type = TextType::REGULAR, 
                   TextFrequency text_frequency = TextFrequency::RANDOM);
-    //char text_[TEXTLIMIT];
-    // void printAd(HD44780 &lcd);
     void printAd();
-    //char* my_test();
-    //void print(Billboard &board);
-    //void print_ad(); 
 };
 
 

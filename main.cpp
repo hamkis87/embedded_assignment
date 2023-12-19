@@ -14,8 +14,6 @@
 // B (digital pin 8 to 13)
 // C (analog input pins)
 // D (digital pins 0 to 7)
-//#define LED_PIN 2
-//#define NUMBER_OF_CUSTOMERS 4
 
 //volatile uint32_t millis_count = 0;
 
